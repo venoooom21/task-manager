@@ -6,6 +6,8 @@ import Progress from "Pages/inProgress";
 import ToDo from "Pages/ToDo";
 import Trash from "Pages/trash";
 import Team from "Pages/Team";
+import SignIn from "Pages/authentication/sign-in";
+import SignUp from "Pages/authentication/sign-up";
 // @mui icons
 import Icon from "@mui/material/Icon";
 const routes = [
@@ -53,7 +55,7 @@ const routes = [
     type: "collapse",
     name: "Team",
     key: "Team",
-    icon: <Icon fontSize="small">Team</Icon>,
+    icon: <Icon fontSize="small">group</Icon>,
     route: "/Team",
     component: <Team />,
   },
@@ -64,6 +66,22 @@ const routes = [
     icon: <Icon fontSize="small">delete_sweep</Icon>, // Correct icon name is "delete_sweep"
     route: "/Trash",
     component: <Trash />,
+  },
+  {
+    type: "collapse",
+    name: "Sign In",
+    key: "sign-in",
+    icon: <Icon fontSize="small">login</Icon>,
+    route: "/authentication/sign-in",
+    component: <SignIn />,
+  },
+  {
+    type: "collapse",
+    name: "Sign Up",
+    key: "sign-up",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/authentication/sign-up",
+    component: <SignUp />,
   },
 ];
 

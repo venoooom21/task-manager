@@ -52,6 +52,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 // Images
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
+
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
   const {
@@ -154,7 +155,7 @@ export default function App() {
             <Sidenav
               color={sidenavColor}
               brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-              brandName="TaskMe"
+              brandName="Material Dashboard 2"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
@@ -178,7 +179,7 @@ export default function App() {
           <Sidenav
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-            brandName="TaskMe"
+            brandName="Material Dashboard 2"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
@@ -191,7 +192,6 @@ export default function App() {
       <Routes>
         {getRoutes(routes)}
         <Route path="*" element={<Navigate to="/dashboard" />} />
-        <Route path="signIn" element={<Navigate to="/authentication/sign-in" />} />
       </Routes>
     </ThemeProvider>
   );

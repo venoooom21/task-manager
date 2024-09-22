@@ -32,7 +32,7 @@ import CoverLayout from "Pages/authentication/components/CoverLayout";
 // Images
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
 
-function Cover() {
+function SignUp() {
   return (
     <CoverLayout image={bgImage}>
       <Card>
@@ -113,4 +113,4 @@ function Cover() {
   );
 }
 
-export default Cover;
+export default SignUp;

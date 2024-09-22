@@ -1,3 +1,18 @@
+/**
+=========================================================
+* Material Dashboard 2 React - v2.2.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/material-dashboard-react
+* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*/
+
 import { useState, useEffect } from "react";
 
 // react-router components
@@ -15,7 +30,7 @@ import Icon from "@mui/material/Icon";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
-// import MDInput from "components/MDInput";
+import MDInput from "components/MDInput";
 
 // Material Dashboard 2 React example components
 import Breadcrumbs from "examples/Breadcrumbs";
@@ -29,8 +44,7 @@ import {
   navbarIconButton,
   navbarMobileMenu,
 } from "examples/Navbars/DashboardNavbar/styles";
-import MDTypography from "components/MDTypography";
-import MDInput from "components/MDInput";
+
 // Material Dashboard 2 React context
 import {
   useMaterialUIController,
@@ -58,8 +72,17 @@ function DashboardNavbar({ absolute, light, isMini }) {
     function handleTransparentNavbar() {
       setTransparentNavbar(dispatch, (fixedNavbar && window.scrollY === 0) || !fixedNavbar);
     }
+
+    /** 
+     The event listener that's calling the handleTransparentNavbar function when 
+     scrolling the window.
+    */
     window.addEventListener("scroll", handleTransparentNavbar);
+
+    // Call the handleTransparentNavbar function to set the state with the initial value.
     handleTransparentNavbar();
+
+    // Remove event listener on cleanup
     return () => window.removeEventListener("scroll", handleTransparentNavbar);
   }, [dispatch, fixedNavbar]);
 
@@ -68,6 +91,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
 
+  // Render the notifications menu
   const renderMenu = () => (
     <Menu
       anchorEl={openMenu}
@@ -111,9 +135,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
         </MDBox>
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
-            <MDBox color={light ? "white" : "inherit"}>
+            <MDBox pr={1}>
               <MDInput label="Search here" />
-              <Link to="/signIn">
+            </MDBox>
+            <MDBox color={light ? "white" : "inherit"}>
+              <Link to="/authentication/sign-in">
                 <IconButton sx={navbarIconButton} size="small" disableRipple>
                   <Icon sx={iconsStyle}>account_circle</Icon>
                 </IconButton>

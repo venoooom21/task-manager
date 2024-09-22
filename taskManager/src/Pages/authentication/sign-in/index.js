@@ -26,7 +26,7 @@ import BasicLayout from "Pages/authentication/components/CoverLayout";
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
-function Basic() {
+function SignIn() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
@@ -113,4 +113,4 @@ function Basic() {
   );
 }
 
-export default Basic;
+export default SignIn;
