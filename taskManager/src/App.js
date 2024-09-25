@@ -12,9 +12,7 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-
-import { useState, useEffect, useMemo } from "react";
-
+import React, { useState,useEffect, useMemo } from "react"; 
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
@@ -52,6 +50,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 // Images
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
+import TodoList from "Pages/ToDo/TodoList";
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
   const {
@@ -193,6 +192,12 @@ export default function App() {
         <Route path="*" element={<Navigate to="/dashboard" />} />
         <Route path="signIn" element={<Navigate to="/authentication/sign-in" />} />
       </Routes>
+
+      <TodoList>
+        {getRoutes(routes)}
+        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="ToDo" element={<Navigate to={"/ToDo"}/>}/>
+      </TodoList>
     </ThemeProvider>
   );
 }

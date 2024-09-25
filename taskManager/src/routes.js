@@ -3,7 +3,7 @@ import Dashboard from "Pages/dashboard";
 import Task from "Pages/task";
 import Completed from "Pages/Completed";
 import Progress from "Pages/inProgress";
-import ToDo from "Pages/ToDo";
+import TodoList from "Pages/ToDo/TodoList";
 import Trash from "Pages/trash";
 import Team from "Pages/Team";
 // @mui icons
@@ -46,8 +46,8 @@ const routes = [
     name: "To Do",
     key: "to-do",
     icon: <Icon fontSize="small">checklist</Icon>, // Correct icon for checklist
-    route: "/todo",
-    component: <ToDo />,
+    route: "/TodoList",
+    component: <TodoList />,
   },
   {
     type: "collapse",
