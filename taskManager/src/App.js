@@ -192,12 +192,6 @@ export default function App() {
         <Route path="*" element={<Navigate to="/dashboard" />} />
         <Route path="signIn" element={<Navigate to="/authentication/sign-in" />} />
       </Routes>
-
-      <TodoList>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
-        <Route path="ToDo" element={<Navigate to={"/ToDo"}/>}/>
-      </TodoList>
     </ThemeProvider>
   );
 }
