@@ -1,7 +1,5 @@
-import { useState } from "react";
-
-// react-router-dom components
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -27,9 +25,31 @@ import BasicLayout from "Pages/authentication/components/CoverLayout";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
 function SignIn() {
+  // State variables for form inputs and remember me toggle
   const [rememberMe, setRememberMe] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+  const navigate = useNavigate(); // useNavigate hook for programmatic navigation
+
+  // Toggle the "Remember Me" switch state
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
+  // Handle form submission for sign-in
+  const handleSignIn = (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    // Mock authentication logic - Replace with real authentication logic/API call
+    useEffect(() => {
+      axios.get('http://localhost:3000/user')
+        .then(res => {
+          setData(res.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }, []);
+  };
 
   return (
     <BasicLayout image={bgImage}>
@@ -67,13 +87,29 @@ function SignIn() {
           </Grid>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
-          <MDBox component="form" role="form">
+          {/* Form submission logic handled with handleSignIn */}
+          <MDBox component="form" role="form" onSubmit={handleSignIn}>
+            {/* Email input */}
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput
+                type="email"
+                label="Email"
+                fullWidth
+                value={email} // Bind state variable
+                onChange={(e) => setEmail(e.target.value)} // Update state on change
+              />
             </MDBox>
+            {/* Password input */}
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput
+                type="password"
+                label="Password"
+                fullWidth
+                value={password} // Bind state variable
+                onChange={(e) => setPassword(e.target.value)} // Update state on change
+              />
             </MDBox>
+            {/* Remember Me toggle */}
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
               <MDTypography
@@ -86,11 +122,13 @@ function SignIn() {
                 &nbsp;&nbsp;Remember me
               </MDTypography>
             </MDBox>
+            {/* Sign in button */}
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
-                sign in
+              <MDButton variant="gradient" color="info" fullWidth type="submit">
+                Sign in
               </MDButton>
             </MDBox>
+            {/* Link to Sign-Up page */}
             <MDBox mt={3} mb={1} textAlign="center">
               <MDTypography variant="button" color="text">
                 Don&apos;t have an account?{" "}

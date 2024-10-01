@@ -1,55 +1,27 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-import React, { useState,useEffect, useMemo } from "react"; 
-// react-router components
+import React, { useState, useEffect, useMemo } from "react"; 
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-
-// @mui material components
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
-
-// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
-
-// Material Dashboard 2 React example components
 import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
-
-// Material Dashboard 2 React themes
 import theme from "assets/theme";
 import themeRTL from "assets/theme/theme-rtl";
-
-// Material Dashboard 2 React Dark Mode themes
 import themeDark from "assets/theme-dark";
 import themeDarkRTL from "assets/theme-dark/theme-rtl";
-
-// RTL plugins
 import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
-
-// Material Dashboard 2 React routes
 import routes from "routes";
-
-// Material Dashboard 2 React contexts
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
-
-// Images
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
+import ProtectedRoute from "components/pages/authentication/ProtectedRoute"; // Import the new component
+import SignIn from "Pages/authentication/sign-in";
+import SignOut from "Pages/authentication/sign-out";
+
+
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
   const {
@@ -66,13 +38,15 @@ export default function App() {
   const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
 
+  // Mocked authentication state - replace this with real auth state
+  const isAuthenticated = !!localStorage.getItem('token');
+
   // Cache for the rtl
   useMemo(() => {
     const cacheRtl = createCache({
       key: "rtl",
       stylisPlugins: [rtlPlugin],
     });
-
     setRtlCache(cacheRtl);
   }, []);
 
@@ -113,7 +87,23 @@ export default function App() {
       }
 
       if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
+        // Wrap the route component with ProtectedRoute when the path is /dashboard
+        return (
+          <Route
+            exact
+            path={route.route}
+            element={
+              route.route === "/dashboard" ? (
+                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                  {route.component}
+                </ProtectedRoute>
+              ) : (
+                route.component
+              )
+            }
+            key={route.key}
+          />
+        );
       }
 
       return null;
@@ -164,7 +154,13 @@ export default function App() {
         {layout === "vr" && <Configurator />}
         <Routes>
           {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
+          {/* Redirect from /signin to /dashboard if authenticated */}
+          <Route
+            path="/signin"
+            element={isAuthenticated ? <Navigate to="/dashboard" /> : <SignIn />} 
+          />
+          {/* Default fallback to signin */}
+          <Route path="*" element={<Navigate to="/signin" />} />
         </Routes>
       </ThemeProvider>
     </CacheProvider>
@@ -188,7 +184,13 @@ export default function App() {
       {layout === "vr" && <Configurator />}
       <Routes>
         {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        {/* Redirect from /signin to /dashboard if authenticated */}
+        <Route
+          path="/signin"
+          element={isAuthenticated ? <Navigate to="/dashboard" /> : <SignIn />} 
+        />
+        {/* Default fallback to signin */}
+        <Route path="*" element={<Navigate to="/signin" />} />
       </Routes>
     </ThemeProvider>
   );
