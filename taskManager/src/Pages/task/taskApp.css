@@ -1,0 +1,183 @@
+.task-app {
+    width: 100%;
+    max-width: 1200px; /* Optional, to limit the width */
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .task-form {
+    width: 400px; /* Set the width of the box */
+    margin: 50px auto; /* Center the box */
+    padding: 20px; /* Add padding inside the box */
+    border: 1px solid #ccc; /* Border of the box */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(13, 13, 13, 0.459); /* Shadow effect */
+    text-align: center; /* Center text */
+    background-color: rgba(18, 18, 18, 0.768); /* Background color */
+    
+  }
+  .task-form p{ 
+    text-align: left;
+    color: white;
+  }
+  .task-form div {
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"], input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 8px;
+    background-color: #489ce6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #729de3;
+  }
+  
+  /* Align task items horizontally */
+  .task-list {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping when there's not enough space */
+    gap: 20px; /* Adds space between task boxes */
+    justify-content: center; /* Centers the task boxes horizontally */
+    width: 100%;
+    
+  }
+  
+  .task-item {
+    background-color: #fff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px;
+    flex-basis: calc(40% - 40px); /* Each task takes 33.33% of the row width, minus the gap */
+    max-width: 380px; /* Prevents the task box from becoming too large */
+    border: 1px solid #ddd; /* Light border */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box; /* Ensures padding is included in the width calculation */
+    width: max-content;
+    margin-bottom: 60px;
+    height: 250px;
+  }
+  .task-item p{
+    text-align: left;
+    font-size: 17px;
+    color: #555;
+  }
+  .task-item h3{
+    text-align: left;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+  }
+  .task-content p {
+    max-height: 150px; /* Set a maximum height for the content area */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden;
+    margin-top: 20px; /* Space below the task content */
+    word-wrap: break-word;
+    height: 100px;
+   
+  }
+  .task-content p{
+    background-color: #f0efef;
+    border-radius: 5px;
+  }
+  
+  /* Scrollbar Styles */
+  ::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Background of the scrollbar track */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar handle */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar handle on hover */
+  }
+  
+  .task-content h3 {
+    margin: 0;
+  }
+  
+  .task-content p {
+    margin: 5px 0;
+  }
+  
+  .delete-icon {
+    color: #ff0000; /* Red color for delete icon */
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .clock-icon{
+    margin-right: 10px;
+  }
+  
+  .delete-icon:hover {
+    color: #cc0000; /* Darker red on hover */
+  }
+  .date{
+    display: flex; /* Enables Flexbox layout */
+    align-items: baseline ;
+    text-align: left;
+    font-size: 15px;
+    margin-top: 20px;
+  }
+  .deadline{
+    display: flex; /* Enables Flexbox layout */
+    align-items: center; /* Centers items vertically */
+    justify-content: space-between; /* Space between clock/date and trash icon */
+    margin-top: 10px; /* Optional: space above this row */
+  
+  }
+  .importante{
+    display: flex; /* Enables Flexbox layout */
+    align-items: baseline ;
+    text-align: left;
+    font-size: 15px;
+    margin-top: 40px;
+    margin-top: 20px;
+  }
+
+  /* Style for the select box */
+select {
+    width: 100%; /* Make it take full width of the container */
+    padding: 10px; /* Add padding for better spacing */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #fff; /* White background */
+    font-size: 16px; /* Font size */
+    appearance: none; /* Remove default arrow */
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"%3E%3Cpolygon points="0,0 5,5 10,0" fill="%234CAF50" /%3E%3C/svg%3E'); /* Custom dropdown arrow */
+    background-repeat: no-repeat; /* No repeat */
+    background-position: right 10px center; /* Position the arrow */
+    background-size: 10px; /* Size of the arrow */
+  }
+  
+  /* Style for the select box on focus */
+  select:focus {
+    border-color: #4CAF50; /* Green border on focus */
+    outline: none; /* Remove outline */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Subtle shadow effect */
+  }
+  
+  /* Optional: Disable arrow for older browsers */
+  select::-ms-expand {
+    display: none; /* Hide the default arrow in Internet Explorer */
+  }
+  
+  

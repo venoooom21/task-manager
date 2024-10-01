@@ -1,8 +1,7 @@
 // Material Dashboard 2 React Pages
 import Dashboard from "Pages/dashboard";
-import Task from "Pages/task";
+import TaskApp from "Pages/task/task";
 import Completed from "Pages/Completed";
-import Progress from "Pages/inProgress";
 import TodoList from "Pages/ToDo/TodoList";
 import Trash from "Pages/trash";
 import Team from "Pages/Team";
@@ -21,11 +20,11 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Task",
+    name: "task",
     key: "task",
     icon: <Icon fontSize="small">assignment</Icon>, // Correct icon for "Task"
     route: "/task",
-    component: <Task />,
+    component: <TaskApp />,
   },
   {
     type: "collapse",
@@ -35,14 +34,14 @@ const routes = [
     route: "/completed",
     component: <Completed />,
   },
-  {
+  /*{
     type: "collapse",
     name: "Progress",
     key: "progress",
     icon: <Icon fontSize="small">hourglass_empty</Icon>, // Updated to "hourglass_empty" for progress
     route: "/progress",
     component: <Progress />,
-  },
+  },*/
   {
     type: "collapse",
     name: "To Do",
