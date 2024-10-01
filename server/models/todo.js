@@ -12,12 +12,16 @@ const todoSchema = new Schema(
     stage: {
       type: String,
       default: "todo",
+      deleted: {
+        type: Boolean,
+        default: false,  // new field to mark as deleted
+      },
       enum: ["todo", "in progress", "completed"],
       required : true,
     },
     },
     { timestamps: true }
 )
-const todo = mongoose.model("todo", taskSchema);
+const todo = mongoose.model("todo", todoSchema);
 
 export default todo;

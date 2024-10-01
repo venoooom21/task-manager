@@ -1,37 +1,70 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// @mui material components
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Grid from "@mui/material/Grid";
-
-// Material Dashboard 2 React components
+import { Line } from "react-chartjs-2";
 import MDBox from "components/MDBox";
-
-// Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
-import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
-// Data
-import reportsBarChartData from "Pages/dashboard/data/reportsBarChartData";
-import reportsLineChartData from "Pages/dashboard/data/reportsLineChartData";
+// Import and register Chart.js components for Chart.js v3+
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+// Register the necessary components
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 function Dashboard() {
-  const { sales, tasks } = reportsLineChartData;
+  const [stats, setStats] = useState({
+    totalTodos: 0,
+    completedTodos: 0,
+    inProgressTodos: 0,
+  });
+
+  const [chartData, setChartData] = useState({
+    completedToday: 0,
+    completedThisWeek: 0,
+    completedThisMonth: 0,
+  });
+
+  // Fetch to-do statistics from the API
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const statsResponse = await axios.get("/api/todos/stats");
+        setStats(statsResponse.data);
+
+        const chartResponse = await axios.get("/api/todos/completed-stats");
+        setChartData(chartResponse.data);
+      } catch (error) {
+        console.error("Error fetching stats:", error);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
+  const lineChartData = {
+    labels: ["Today", "This Week", "This Month"],
+    datasets: [
+      {
+        label: "Completed Tasks",
+        data: [chartData.completedToday, chartData.completedThisWeek, chartData.completedThisMonth],
+        backgroundColor: "rgba(75,192,192,0.4)",
+        borderColor: "rgba(75,192,192,1)",
+        borderWidth: 1,
+        fill: true,
+      },
+    ],
+  };
 
   return (
     <DashboardLayout>
@@ -43,13 +76,8 @@ function Dashboard() {
               <ComplexStatisticsCard
                 color="dark"
                 icon="assignment"
-                title="Total tasks"
-                count={10}
-                percentage={{
-                  color: "success",
-                  amount: "111",
-                  label: " last month",
-                }}
+                title="Total Todos"
+                count={stats.totalTodos}
               />
             </MDBox>
           </Grid>
@@ -57,13 +85,8 @@ function Dashboard() {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 icon="leaderboard"
-                title="Completed Task"
-                count="1"
-                percentage={{
-                  color: "success",
-                  amount: "111",
-                  label: " last month",
-                }}
+                title="Completed Todos"
+                count={stats.completedTodos}
               />
             </MDBox>
           </Grid>
@@ -72,31 +95,32 @@ function Dashboard() {
               <ComplexStatisticsCard
                 color="primary"
                 icon="checklist"
-                title="ToDos"
-                count="6"
-                percentage={{
-                  color: "success",
-                  amount: "111",
-                  label: "last month",
-                }}
+                title="In Progress"
+                count={stats.inProgressTodos}
               />
             </MDBox>
           </Grid>
         </Grid>
-        <MDBox mt={5}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={2}>
-                <ReportsBarChart
-                  color="info"
-                  title="chart"
-                  description="Last Campaign Performance"
-                  date="campaign sent 2 days ago"
-                  chart={reportsBarChartData}
-                />
-              </MDBox>
-            </Grid>
-          </Grid>
+
+        {/* Completed Tasks Line Chart */}
+        <MDBox mt={4}>
+          <Line
+            data={lineChartData}
+            options={{
+              responsive: true,
+              plugins: {
+                title: {
+                  display: true,
+                  text: "Completed Tasks Over Time",
+                },
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                },
+              },
+            }}
+          />
         </MDBox>
       </MDBox>
     </DashboardLayout>
