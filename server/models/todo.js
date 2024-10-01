@@ -18,6 +18,16 @@ const todoSchema = new Schema(
     },
     { timestamps: true }
 )
-const todo = mongoose.model("todo", taskSchema);
 
-export default todo;
+const todo = mongoose.model("Todo", todoSchema);
+//test
+//   const newTodo = new todo({
+//   title: 'John Doe',
+//   priority: 'high',
+//   stage: 'in progress'
+// });
+// newTodo.save()
+//   .then(() => console.log('User saved successfully!'))
+//   .catch((error) => console.log('Error saving user:', error));
+
+export default Todo;

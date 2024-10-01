@@ -4,7 +4,6 @@ import TaskApp from "Pages/task/task";
 import Completed from "Pages/Completed";
 import TodoList from "Pages/ToDo/TodoList";
 import Trash from "Pages/trash";
-import Team from "Pages/Team";
 import SignIn from "Pages/authentication/sign-in";
 import SignUp from "Pages/authentication/sign-up";
 // @mui icons
@@ -49,14 +48,6 @@ const routes = [
     icon: <Icon fontSize="small">checklist</Icon>, // Correct icon for checklist
     route: "/TodoList",
     component: <TodoList />,
-  },
-  {
-    type: "collapse",
-    name: "Team",
-    key: "Team",
-    icon: <Icon fontSize="small">group</Icon>,
-    route: "/Team",
-    component: <Team />,
   },
   {
     type: "collapse",

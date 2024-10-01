@@ -6,7 +6,7 @@ const userSchema = new Schema(
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    tasks: [{ type: Schema.Types.ObjectId, ref: "Task" }],
+    //tasks: [{ type: Schema.Types.ObjectId, ref: "Task" }],
   },
   { timestamps: true }
 );
@@ -26,4 +26,16 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 
 const User = mongoose.model("User", userSchema);
 
+
+
+//test
+/*  const newUser = new User({
+  name: 'John Doe',
+  email: 'johndoe@example.com',
+  password: 'password'
+});
+
+newUser.save()
+  .then(() => console.log('User saved successfully!'))
+  .catch((error) => console.log('Error saving user:', error)); */ 
 export default User;
