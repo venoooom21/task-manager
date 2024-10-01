@@ -1,7 +1,9 @@
 // routes/todos.js
-const express = require("express");
+import express from 'express';
+import { protectRoute } from "../middlewares/authentificationMiddleware.js";
+
+
 const router = express.Router();
-const Todo = require("../models/todo"); // Import the todo model
 
 // Endpoint to get to-do statistics
 router.get("/stats", async (req, res) => {
@@ -59,4 +61,4 @@ const getDateRange = (days) => {
   });
   
 
-module.exports = router;
+export default router;

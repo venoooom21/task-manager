@@ -26,4 +26,16 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 
 const User = mongoose.model("User", userSchema);
 
+
+
+//test
+/*  const newUser = new User({
+  name: 'John Doe',
+  email: 'johndoe@example.com',
+  password: 'password'
+});
+
+newUser.save()
+  .then(() => console.log('User saved successfully!'))
+  .catch((error) => console.log('Error saving user:', error)); */ 
 export default User;

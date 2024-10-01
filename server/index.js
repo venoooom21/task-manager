@@ -17,11 +17,12 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: "http://localhost:3000",
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
 );
+const router = express.Router();
 router.get('/statistics', async (req, res) => {
   try {
     const totalSales = await todoModel.aggregate([
@@ -57,14 +58,14 @@ app.put('/api/todos/:id/trash', async (req, res) => {
 });
 
 // Empty trash
-app.delete('/api/todos/trash/empty', async (req, res) => {
+/* app.delete('/api/todos/trash/empty', async (req, res) => {
   try {
     await Todo.deleteMany({ deleted: true });
     res.status(200).send("Trash emptied");
   } catch (error) {
     res.status(500).send("Error emptying trash");
   }
-});
+}); */
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
