@@ -59,11 +59,10 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Sign In",
-    key: "sign-in",
-    icon: <Icon fontSize="small">login</Icon>,
-    route: "/authentication/sign-in",
-    component: <SignIn />,
+    name: "Sign Up",
+    key: "sign-up",
+    route: "/authentication/sign-up",
+    component: <SignUp />, // Ensure SignUp is properly imported and exported
   },
   {
     type: "collapse",

@@ -33,7 +33,7 @@ import MDTypography from "components/MDTypography";
 // DefaultDoughnutChart configurations
 import configs from "examples/Charts/DoughnutCharts/DefaultDoughnutChart/configs";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.signUp(ArcElement, Tooltip, Legend);
 
 function DefaultDoughnutChart({ icon, title, description, height, chart }) {
   const { data, options } = configs(chart.labels || [], chart.datasets || {}, chart.cutout);

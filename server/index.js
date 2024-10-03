@@ -56,6 +56,9 @@ app.put('/api/todos/:id/trash', async (req, res) => {
     res.status(500).send("Error moving to-do to trash");
   }
 });
+app.get('/user', (req, res) => {
+  res.json({ message: 'User data' });
+});
 
 // Empty trash
 /* app.delete('/api/todos/trash/empty', async (req, res) => {

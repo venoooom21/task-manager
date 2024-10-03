@@ -1,8 +1,7 @@
-import { response } from "express";
 import User from "../models/user.js";
 import { createJWT } from "../utils/index.js";
 
-export const registerUser = async (req, res) => {
+export const signUp = async (req, res) => {
   try {
     const { name, email, password} = req.body;
 
@@ -20,7 +19,7 @@ export const registerUser = async (req, res) => {
       email,
       password,
     });
-    if (user) {
+    /* if (user) {
         isAdmin ? createJWT(res, user._id) : null;
   
         user.password = undefined;
@@ -30,7 +29,7 @@ export const registerUser = async (req, res) => {
         return res
           .status(400)
           .json({ status: false, message: "Invalid user data" });
-      }
+      } */
     } catch (error) {
       console.log(error);
       return res.status(400).json({ status: false, message: error.message });
