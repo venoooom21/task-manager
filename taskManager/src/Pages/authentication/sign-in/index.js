@@ -1,7 +1,6 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 
 // @mui material components
@@ -32,6 +31,7 @@ function SignIn() {
   const [rememberMe, setRememberMe] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate(); // useNavigate hook for programmatic navigation
 
@@ -39,19 +39,25 @@ function SignIn() {
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   // Handle form submission for sign-in
-  const handleSignIn = (event) => {
+  const handleSignIn = async (event) => {
     event.preventDefault(); // Prevent default form submission
 
-    // Mock authentication logic - Replace with real authentication logic/API call
-    useEffect(() => {
-      axios.get('http://localhost:3000/user')
-        .then(res => {
-          setData(res.data);
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        });
-    }, []);
+    try {
+      // Mock authentication logic - Replace with real authentication logic/API call
+      const response = await axios.post('http://localhost:5000/login', { email, password });
+
+      if (response.data.success) {
+        // If login is correct, navigate to the dashboard
+        navigate('/dashboard');
+      } else {
+        // Display error message if login fails
+        setError('Invalid email or password');
+      }
+    } catch (err) {
+      // Handle any error that occurs during the login request
+      setError('An error occurred during login');
+      console.error('Login error:', err);
+    }
   };
 
   return (
@@ -125,6 +131,14 @@ function SignIn() {
                 &nbsp;&nbsp;Remember me
               </MDTypography>
             </MDBox>
+            {/* Error message */}
+            {error && (
+              <MDBox mt={2} mb={1}>
+                <MDTypography variant="caption" color="error" textAlign="center">
+                  {error}
+                </MDTypography>
+              </MDBox>
+            )}
             {/* Sign in button */}
             <MDBox mt={4} mb={1}>
               <MDButton variant="gradient" color="info" fullWidth type="submit">
