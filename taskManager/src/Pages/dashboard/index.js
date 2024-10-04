@@ -7,7 +7,6 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
-// Import and register Chart.js components for Chart.js v3+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -19,7 +18,6 @@ import {
   Legend,
 } from "chart.js";
 
-// Register the necessary components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 function Dashboard() {
@@ -35,7 +33,7 @@ function Dashboard() {
     completedThisMonth: 0,
   });
 
-  // Fetch to-do statistics from the API
+  
   useEffect(() => {
     const fetchStats = async () => {
       try {

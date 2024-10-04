@@ -1,4 +1,3 @@
-// Material Dashboard 2 React Pages
 import Dashboard from "Pages/dashboard";
 import TaskApp from "Pages/task/task";
 import Completed from "Pages/Completed";
@@ -6,7 +5,6 @@ import TodoList from "Pages/ToDo/TodoList";
 import Trash from "Pages/trash";
 import SignIn from "Pages/authentication/sign-in";
 import SignUp from "Pages/authentication/sign-up";
-// @mui icons
 import Icon from "@mui/material/Icon";
 const routes = [
   {
@@ -45,7 +43,7 @@ const routes = [
     type: "collapse",
     name: "To Do",
     key: "to-do",
-    icon: <Icon fontSize="small">checklist</Icon>, // Correct icon for checklist
+    icon: <Icon fontSize="small">checklist</Icon>, 
     route: "/TodoList",
     component: <TodoList />,
   },
@@ -53,16 +51,16 @@ const routes = [
     type: "collapse",
     name: "Trash",
     key: "Trash",
-    icon: <Icon fontSize="small">delete_sweep</Icon>, // Correct icon name is "delete_sweep"
+    icon: <Icon fontSize="small">delete_sweep</Icon>, 
     route: "/Trash",
     component: <Trash />,
   },
   {
     type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
-    route: "/authentication/sign-up",
-    component: <SignUp />, // Ensure SignUp is properly imported and exported
+    name: "Sign In",
+    key: "sign-in",
+    route: "/authentication/sign-in",
+    component: <SignIn />, 
   },
   {
     type: "collapse",

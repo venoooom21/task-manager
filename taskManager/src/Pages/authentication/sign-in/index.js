@@ -1,60 +1,55 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for redirection
+import { Link, useNavigate } from "react-router-dom"; 
 
-// @mui material components
+
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
 import MuiLink from "@mui/material/Link";
 
-// @mui icons
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
-// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
-// Authentication layout components
+
 import BasicLayout from "Pages/authentication/components/CoverLayout";
 
-// Images
+
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
 function SignIn() {
-  // State variables for form inputs and remember me toggle
   const [rememberMe, setRememberMe] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const navigate = useNavigate(); // useNavigate hook for programmatic navigation
+  const navigate = useNavigate(); 
 
-  // Toggle the "Remember Me" switch state
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
-  // Handle form submission for sign-in
+
   const handleSignIn = async (event) => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); 
 
     try {
-      // Mock authentication logic - Replace with real authentication logic/API call
+      
       const response = await axios.post('http://localhost:5000/login', { email, password });
 
       if (response.data.success) {
-        // If login is correct, navigate to the dashboard
         navigate('/dashboard');
       } else {
-        // Display error message if login fails
+        
         setError('Invalid email or password');
       }
-    } catch (err) {
-      // Handle any error that occurs during the login request
+    } 
+    catch (err) {
       setError('An error occurred during login');
       console.error('Login error:', err);
     }
@@ -104,8 +99,8 @@ function SignIn() {
                 type="email"
                 label="Email"
                 fullWidth
-                value={email} // Bind state variable
-                onChange={(e) => setEmail(e.target.value)} // Update state on change
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)}
               />
             </MDBox>
             {/* Password input */}
@@ -114,8 +109,8 @@ function SignIn() {
                 type="password"
                 label="Password"
                 fullWidth
-                value={password} // Bind state variable
-                onChange={(e) => setPassword(e.target.value)} // Update state on change
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)}
               />
             </MDBox>
             {/* Remember Me toggle */}

@@ -1,14 +1,9 @@
-// @mui material components
+
 import Grid from "@mui/material/Grid";
 
-// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
-
-// Material Dashboard 2 React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-
-// Billing page components (import statements can be kept if needed later)
 
 function Completed() {
   return (

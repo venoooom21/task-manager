@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './taskApp.css'; // Import your CSS file
-import { FaTrash } from 'react-icons/fa'; // Import a delete icon
+import './taskApp.css'; 
+import { FaTrash } from 'react-icons/fa'; 
 import { FaClock } from 'react-icons/fa';
 import Grid from "@mui/material/Grid";
 import MDBox from "components/MDBox";
@@ -13,7 +13,7 @@ const TaskApp = () => {
   const [taskName, setTaskName] = useState('');
   const [description, setDescription] = useState('');
   const [deadline, setDeadline] = useState('');
-  const [importance, setImportance] = useState('Not Started'); // New state for importance
+  const [importance, setImportance] = useState('Not Started'); 
 
   const handleAddTask = (e) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ const TaskApp = () => {
       name: taskName,
       description: description,
       deadline: deadline,
-      importance: importance, // Include importance in the task object
+      importance: importance, 
     };
 
     setTasks([...tasks, newTask]);
