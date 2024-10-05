@@ -26,7 +26,7 @@ function SignUp() {
     event.preventDefault(); 
 
     try {
-      const response = await axios.post('http://localhost:5000/sign-up', {
+      const response = await axios.post('http://localhost:5000/user/sign-up', {
         name,
         email,
         password,

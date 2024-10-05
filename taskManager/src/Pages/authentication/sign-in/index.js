@@ -1,8 +1,6 @@
-
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom"; 
-
 
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
@@ -38,9 +36,14 @@ function SignIn() {
   const handleSignIn = async (event) => {
     event.preventDefault(); 
 
+    if (!email || !password) {
+      setError('Please enter both email and password');
+      return;
+    }
+
     try {
       
-      const response = await axios.post('http://localhost:5000/login', { email, password });
+      const response = await axios.post('http://localhost:5000/user/sign-in', { email, password });
 
       if (response.data.success) {
         navigate('/dashboard');
@@ -51,7 +54,7 @@ function SignIn() {
     } 
     catch (err) {
       setError('An error occurred during login');
-      console.error('Login error:', err);
+      console.error('Login error:', err.response ? err.response.data : err.message);
     }
   };
 
